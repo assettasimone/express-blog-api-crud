@@ -3,38 +3,28 @@ const express = require('express')
 //declare router
 const router = express.Router()
 
-const blogPosts = require('../data/posts')
+//import controllers
+const blogControllers = require('../controllers/blogControllers')
+
 
 
 //index
-router.get('/', (req, res) => {
-    res.send('posts router online')
-})
+router.get('/', blogControllers.index)
 
 //show
-router.get('/:id', (req, res) => {
-
-})
+router.get('/:id', blogControllers.show)
 
 //store
-router.post('/', (req, res) => {
-
-})
+router.post('/', blogControllers.store)
 
 //update
-router.put('/:id', (req, res) => {
-
-})
+router.put('/:id', blogControllers.update)
 
 //modify
-router.patch('/:id', (req, res) => {
-
-})
+router.patch('/:id', blogControllers.modify)
 
 //destroy
-router.delete('/:id', (req, res) => {
-
-})
+router.delete('/:id', blogControllers.destroy)
 
 
 module.exports = router
