@@ -52,7 +52,7 @@ const update = (req, res) => {
     const post = blogPosts.find(item => item.id === id)
 
     if (!post) {
-        res.status(404).send('post non trovato')
+        return res.status(404).send('post non trovato')
     }
     const { title, content, coverImage, tags } = req.body
 
@@ -73,7 +73,7 @@ const modify = (req, res) => {
     const post = blogPosts.find(item => item.id === id)
 
     if (!post) {
-        res.status(404).send('post non trovato')
+        return res.status(404).send('post non trovato')
     }
     const { title, content, coverImage, tags } = req.body
 
@@ -93,7 +93,7 @@ const destroy = (req, res) => {
     const post = blogPosts.find(item => item.id === id)
     console.log(post)
     if (!post) {
-        res.status(404).send('post not found')
+        return res.status(404).send('post not found')
     }
     console.log(blogPosts.indexOf(post))
 
