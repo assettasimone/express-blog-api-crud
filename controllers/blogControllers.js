@@ -1,13 +1,33 @@
 //data imports for controllers
 const blogPosts = require('../data/posts')
+
+
 //index function
 const index = (req, res) => {
-    res.send('restituisci tutti i post')
+
+    let filteredPosts = blogPosts
+
+    if (req.query.tags) {
+        filteredPosts = blogPosts.filter(item => item.tags.includes(req.query.tags))
+    }
+
+    res.json(filteredPosts)
 }
+
+
 //show function
 const show = (req, res) => {
-    res.send('restituisci un singolo post')
+    const id = parseInt(req.params.id)
+    const post = blogPosts.find(item => item.id === id)
+
+    if (!post) {
+        res.status(404).send('Post not found')
+    }
+
+
+    res.json(post)
 }
+
 //store function
 const store = (req, res) => {
     res.send('crea un nuovo post')
