@@ -48,11 +48,42 @@ const store = (req, res) => {
 
 //update function
 const update = (req, res) => {
-    res.send('modifica un post')
+    const id = parseInt(req.params.id)
+    const post = blogPosts.find(item => item.id === id)
+
+    if (!post) {
+        res.status(404).send('post non trovato')
+    }
+    const { title, content, coverImage, tags } = req.body
+
+    post.content = content
+    post.title = title
+    post.coverImage = coverImage
+    post.tags = tags
+
+    res.json(post)
+
 }
+
+
+
 //modify function
 const modify = (req, res) => {
-    res.send('modifica un post esistente')
+    const id = parseInt(req.params.id)
+    const post = blogPosts.find(item => item.id === id)
+
+    if (!post) {
+        res.status(404).send('post non trovato')
+    }
+    const { title, content, coverImage, tags } = req.body
+
+    post.content = content
+    post.title = title
+    post.coverImage = coverImage
+    post.tags = tags
+
+    res.json(post)
+
 }
 
 //destroy function
