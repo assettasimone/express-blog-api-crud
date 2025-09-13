@@ -30,7 +30,20 @@ const show = (req, res) => {
 
 //store function
 const store = (req, res) => {
-    res.send('crea un nuovo post')
+    const newID = blogPosts[blogPosts.length - 1].id + 1
+    const { title, content, coverImage, tags } = req.body
+
+    const newPost = {
+        id: newID,
+        title,
+        content,
+        coverImage,
+        tags,
+    }
+
+    blogPosts.push(newPost)
+
+    res.status(201).json(req.body)
 }
 
 //update function
