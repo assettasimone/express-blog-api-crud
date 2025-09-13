@@ -44,7 +44,19 @@ const modify = (req, res) => {
 
 //destroy function
 const destroy = (req, res) => {
-    res.send('elimina un post')
+    const id = parseInt(req.params.id)
+    console.log(id)
+    const post = blogPosts.find(item => item.id === id)
+    console.log(post)
+    if (!post) {
+        res.status(404).send('post not found')
+    }
+    console.log(blogPosts.indexOf(post))
+
+    blogPosts.splice(blogPosts.indexOf(post), 1)
+
+    res.status(204).send('elemento cancellato')
+
 }
 
 
